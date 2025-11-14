@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  node1:
+    build: .
+    ports:
+      - "5001:5000"
+    environment:
+      - NODE_ID=1
+      - IS_LEADER=true
+    volumes:
+      - node1_data:/app
+
+  node2:
+    build: .
+    ports:
+      - "5002:5000"
+    environment:
+      - NODE_ID=2
+      - IS_LEADER=false
+    volumes:
+      - node2_data:/app
+
+  node3:
+    build: .
+    ports:
+      - "5003:5000"
+    environment:
+      - NODE_ID=3
+      - IS_LEADER=false
+    volumes:
+      - node3_data:/app
+
+volumes:
+  node1_data:
+  node2_data:
+  node3_data:
